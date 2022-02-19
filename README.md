@@ -1,49 +1,66 @@
 # blog-api
-## How To Use 
-  - Make sure you have installed MongoDB on your local and create `nodeblog` database
-  - Clone this repository into your local repository `git clone https://github.com/tsaqifrazin1/blog-api.git`
-  - Run `npm install` => `npm run start`
-  - If you get `listening on http://localhost:3000` on your console, you can use the api on your local now.
+
+## How To Use
+
+### Local
+
+- Make sure you have installed MongoDB on your local and create `nodeblog` database
+- Clone this repository into your local repository `git clone https://github.com/tsaqifrazin1/blog-api.git`
+- Run `npm install` => `npm run start`
+- If you get `listening on http://localhost:3000` on your console, you can use the api on your local now.
+
+### Public Endpoint
+
+`https://blog-api-fem.herokuapp.com`
 
 ## REST API
-  The REST API to the example blog-api  is described below.
+
+The REST API to the example blog-api is described below (following example is for local, for the public endpoint, please change `localhost:3000` to `https://blog-api-fem.herokuapp.com` in Request section)
 
 ## Auth
-#### Sign in with seed data
-##### Request
-`POST /auth/signin`
 
-    curl --location --request POST 'localhost:3000/auth/signin' \
-    --header 'Content-Type: application/json' \
-    --data-raw '{
-        "username": "katamon",
-        "password": "test"
-    }'
+- #### Sign in with seed data
 
-##### Response
-    HTTP/1.1 200 OK
-    X-Powered-By: Express
-    Access-Control-Allow-Origin: *
-    Vary: X-HTTP-Method-Override
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 184
-    ETag: W/"b8-Dye/xnHuNAPNleIb9K5kSRejxRg"
-    Date: Thu, 17 Feb 2022 17:30:09 GMT
-    Connection: keep-alive
-    Keep-Alive: timeout=5
-
-    {"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlNzgwOTM0NGUxOTRhMzViYjgwMmQiLCJpYXQiOjE2NDUxMTkwMDgsImV4cCI6MTY0NTk4MzAwOH0.19aZfo_LdCLDj3pZghHipueUXiiG4TebJHhqpQtkn24"}
-    
-## Users
-  CRUD Users collections
-
-* #### Read All Users data
   ##### Request
+
+  `POST /auth/signin`
+
+        curl --location --request POST 'localhost:3000/auth/signin' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+            "username": "katamon",
+            "password": "test"
+        }'
+
+  ##### Response
+
+        HTTP/1.1 200 OK
+        X-Powered-By: Express
+        Access-Control-Allow-Origin: *
+        Vary: X-HTTP-Method-Override
+        Content-Type: application/json; charset=utf-8
+        Content-Length: 184
+        ETag: W/"b8-Dye/xnHuNAPNleIb9K5kSRejxRg"
+        Date: Thu, 17 Feb 2022 17:30:09 GMT
+        Connection: keep-alive
+        Keep-Alive: timeout=5
+
+        {"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlNzgwOTM0NGUxOTRhMzViYjgwMmQiLCJpYXQiOjE2NDUxMTkwMDgsImV4cCI6MTY0NTk4MzAwOH0.19aZfo_LdCLDj3pZghHipueUXiiG4TebJHhqpQtkn24"}
+
+## Users
+
+CRUD Users collections
+
+- #### Read All Users data
+
+  ##### Request
+
   `GET /api/users`
 
       curl --location --request GET 'localhost:3000/api/users/'
 
   ##### Response
+
       HTTP/1.1 200 OK
       X-Powered-By: Express
       Access-Control-Allow-Origin: *
@@ -55,8 +72,11 @@
       Keep-Alive: timeout=5
 
       [{"_id":"620e7809344e194a35bb802c","username":"Xoko","__v":0},{"_id":"620e7809344e194a35bb802d","username":"katamon","__v":0},{"_id":"620e7809344e194a35bb802b","username":"Jimmylo","__v":0}]
-* #### Create User Data
+
+- #### Create User Data
+
   ##### Request
+
   `POST /api/users`
 
       curl --location --request POST 'localhost:3000/api/users/' \
@@ -66,7 +86,8 @@
           "password": "pass"
       }'
 
-  ##### Response 
+  ##### Response
+
       HTTP/1.1 200 OK
       X-Powered-By: Express
       Access-Control-Allow-Origin: *
@@ -80,9 +101,11 @@
 
       {"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlOGEzMjM0NGUxOTRhMzViYjgwNGUiLCJpYXQiOjE2NDUxMjAwNTEsImV4cCI6MTY0NTk4NDA1MX0.K5OJBOl9jo0rsJftQBKoMpBhLx1mrz9ZDoJn_2HHYV4"}
 
-* #### Get One User data by _id
+- #### Get One User data by \_id
+
   ##### Request
-  `GET /api/users/<id>` (get _id from one of user in Read All Users data)
+
+  `GET /api/users/<id>` (get \_id from one of user in Read All Users data)
 
       curl --location --request GET 'localhost:3000/api/users/620e8ddbc2ae8c9fe206f61f'
 
@@ -100,9 +123,11 @@
 
       {"_id":"620e8ddbc2ae8c9fe206f61f","username":"Jimmylo","__v":0}
 
-* #### Get me
+- #### Get me
+
   ##### Request
-  `GET /api/users/me?access_token=<token you get from signin>` (get _id from one of user in Read All Users data)
+
+  `GET /api/users/me?access_token=<token you get from signin>` (get \_id from one of user in Read All Users data)
 
       curl --location --request GET 'localhost:3000/api/users/me?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlOTc1YjNmYTc5NTkyYmE1ZWEzNGIiLCJpYXQiOjE2NDUxMjM0NjEsImV4cCI6MTY0NTk4NzQ2MX0.sRhWLNMEh2RxcPU43LFD6wqiMQFVOjys_AEZMyaqKiY'
 
@@ -119,10 +144,12 @@
       Keep-Alive: timeout=5
 
       {"_id":"620e8ddbc2ae8c9fe206f61f","username":"Jimmylo","__v":0}
-    
-* #### Update User data by _id
+
+- #### Update User data by \_id
+
   ##### Request
-  `PUT /api/users/<id>?access_token=<token you get from signin>` (get _id from one of user in Read All Users data)
+
+  `PUT /api/users/<id>?access_token=<token you get from signin>` (get \_id from one of user in Read All Users data)
 
       curl --location --request PUT 'localhost:3000/api/users/620e975b3fa79592ba5ea34b?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlOTc1YjNmYTc5NTkyYmE1ZWEzNGIiLCJpYXQiOjE2NDUxMjM0NjEsImV4cCI6MTY0NTk4NzQ2MX0.sRhWLNMEh2RxcPU43LFD6wqiMQFVOjys_AEZMyaqKiY' \
       --header 'Content-Type: application/json' \
@@ -144,13 +171,16 @@
 
       {"_id":"620e975b3fa79592ba5ea34b","username":"jimmylo","__v":0}
 
-* #### Delete User data by _id
+- #### Delete User data by \_id
+
   ##### Request
-  `DELETE /api/users/<id>?access_token=<token you get from signin>` (get _id from one of user in Read All Users data)
+
+  `DELETE /api/users/<id>?access_token=<token you get from signin>` (get \_id from one of user in Read All Users data)
 
       curl --location --request DELETE 'localhost:3000/api/users/620e975b3fa79592ba5ea34b?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlOTc1YjNmYTc5NTkyYmE1ZWEzNGIiLCJpYXQiOjE2NDUxMjM0NjEsImV4cCI6MTY0NTk4NzQ2MX0.sRhWLNMEh2RxcPU43LFD6wqiMQFVOjys_AEZMyaqKiY'
 
-   ##### Response
+  ##### Response
+
       HTTP/1.1 200 OK
       X-Powered-By: Express
       Access-Control-Allow-Origin: *
@@ -164,15 +194,19 @@
       {"_id":"620e975b3fa79592ba5ea34b","username":"jimmylo","__v":0}
 
 ## Categories
-  CRUD Categories collection
 
-* #### Read All Categories data
+CRUD Categories collection
+
+- #### Read All Categories data
+
   ##### Request
+
   `GET /api/categories`
 
       curl --location --request GET 'localhost:3000/api/categories/`
 
   ##### Response
+
       HTTP/1.1 200 OK
       X-Powered-By: Express
       Access-Control-Allow-Origin: *
@@ -184,8 +218,11 @@
       Keep-Alive: timeout=5
 
       [{"_id":"620e975b3fa79592ba5ea351","name":"intros","__v":0},{"_id":"620e975b3fa79592ba5ea352","name":"angular","__v":0},{"_id":"620e975b3fa79592ba5ea353","name":"UI/UX","__v":0}]
-* #### Create Categories Data
+
+- #### Create Categories Data
+
   ##### Request
+
   `POST /api/categories?access_token=<token you got from signin>`
 
       curl --location --request POST 'localhost:3000/api/categories/?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlOTc1YjNmYTc5NTkyYmE1ZWEzNGQiLCJpYXQiOjE2NDUxMjQ5MjMsImV4cCI6MTY0NTk4ODkyM30.5y1N8aiNyt-BNb-Q07d7D5f30I0f5AbKGm0r2x-avhU' \
@@ -194,7 +231,8 @@
           "name": "Tech"
       }'
 
-  ##### Response 
+  ##### Response
+
       HTTP/1.1 200 OK
       X-Powered-By: Express
       Access-Control-Allow-Origin: *
@@ -207,9 +245,12 @@
       Keep-Alive: timeout=5
 
       {"name":"Tech","_id":"620e9d4e3fa79592ba5ea378","__v":0}
-* #### Get One Categories data by _id
+
+- #### Get One Categories data by \_id
+
   ##### Request
-  `GET /api/categories/<id>` (get _id from one of categories in Read All Categories data)
+
+  `GET /api/categories/<id>` (get \_id from one of categories in Read All Categories data)
 
       curl --location --request GET 'localhost:3000/api/categories/620e9d4e3fa79592ba5ea378'
 
@@ -226,10 +267,12 @@
       Keep-Alive: timeout=5
 
       {"_id":"620e9d4e3fa79592ba5ea378","name":"Tech","__v":0}
-    
-* #### Update Categories data by _id
+
+- #### Update Categories data by \_id
+
   ##### Request
-  `PUT /api/categories/<id>?access_token=<token you get from signin>` (get _id from one of categories in Read All Categories data)
+
+  `PUT /api/categories/<id>?access_token=<token you get from signin>` (get \_id from one of categories in Read All Categories data)
 
       curl --location --request PUT 'localhost:3000/api/categories/620e9d4e3fa79592ba5ea378?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlOTc1YjNmYTc5NTkyYmE1ZWEzNGQiLCJpYXQiOjE2NDUxMjQ5MjMsImV4cCI6MTY0NTk4ODkyM30.5y1N8aiNyt-BNb-Q07d7D5f30I0f5AbKGm0r2x-avhU' \
       --header 'Content-Type: application/json' \
@@ -250,14 +293,17 @@
       Keep-Alive: timeout=5
 
       {"_id":"620e9d4e3fa79592ba5ea378","name":"IT","__v":0}
-      
-* #### Delete Categories data by _id
+
+- #### Delete Categories data by \_id
+
   ##### Request
-  `DELETE /api/categories/<id>?access_token=<token you get from signin>` (get _id from one of categories in Read All Categories data)
+
+  `DELETE /api/categories/<id>?access_token=<token you get from signin>` (get \_id from one of categories in Read All Categories data)
 
       curl --location --request DELETE 'localhost:3000/api/categories/620e9d4e3fa79592ba5ea378?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlOTc1YjNmYTc5NTkyYmE1ZWEzNGQiLCJpYXQiOjE2NDUxMjQ5MjMsImV4cCI6MTY0NTk4ODkyM30.5y1N8aiNyt-BNb-Q07d7D5f30I0f5AbKGm0r2x-avhU'
 
-   ##### Response
+  ##### Response
+
       HTTP/1.1 200 OK
       X-Powered-By: Express
       Access-Control-Allow-Origin: *
@@ -271,13 +317,17 @@
       {"_id":"620e9d4e3fa79592ba5ea378","name":"IT","__v":0}
 
 ## Posts
-  CRUD Posts  collection
 
-* #### Read All Posts
+CRUD Posts collection
+
+- #### Read All Posts
+
   ##### Request
+
   `GET /api/posts`
-  
+
   ##### Response
+
       HTTP/1.1 200 OK
       X-Powered-By: Express
       Access-Control-Allow-Origin: *
@@ -293,8 +343,10 @@
 
       curl --location --request GET 'localhost:3000/api/categories/`
 
-* #### Create Post Data
+- #### Create Post Data
+
   ##### Request
+
   `POST /api/posts?access_token=<token you got from signin>`
 
       curl --location --request POST 'localhost:3000/api/posts?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlOTc1YjNmYTc5NTkyYmE1ZWEzNGQiLCJpYXQiOjE2NDUxMjQ5MjMsImV4cCI6MTY0NTk4ODkyM30.5y1N8aiNyt-BNb-Q07d7D5f30I0f5AbKGm0r2x-avhU' \
@@ -305,7 +357,9 @@
           "author": "620e975b3fa79592ba5ea34c",
           "categories": ["620e975b3fa79592ba5ea351"]
       }'
-  ##### Response 
+
+  ##### Response
+
       HTTP/1.1 200 OK
       X-Powered-By: Express
       Access-Control-Allow-Origin: *
@@ -317,13 +371,16 @@
       Connection: keep-alive
       Keep-Alive: timeout=5
 
-* #### Read One Post Data
-  ##### Request 
+- #### Read One Post Data
+
+  ##### Request
+
   `GET /api/posts/620e975b3fa79592ba5ea357`
-      
+
       curl --location --request GET 'localhost:3000/api/posts/620e975b3fa79592ba5ea357'
-      
+
   ##### Response
+
       HTTP/1.1 200 OK
       X-Powered-By: Express
       Access-Control-Allow-Origin: *
@@ -337,18 +394,21 @@
       {"_id":"620e975b3fa79592ba5ea357","title":"Learn angular 2 today","text":"Angular to is so dope","author":null,"categories":["620e975b3fa79592ba5ea351"],"__v":1}
             {"title":"Learn IT","text":"NodeJs","author":"620e975b3fa79592ba5ea34d","categories":["620e975b3fa79592ba5ea351"],"_id":"620ea3273fa79592ba5ea389","__v":0}
 
+- #### Update One Post by \_id
 
-* #### Update One Post by _id
   ##### Request
-  `PUT /api/posts/<id>?access_token=<token you get from signin>` (get _id from one of post in Read All Posts data)
-  
+
+  `PUT /api/posts/<id>?access_token=<token you get from signin>` (get \_id from one of post in Read All Posts data)
+
       curl --location --request PUT 'localhost:3000/api/posts/620e975b3fa79592ba5ea357?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlOTc1YjNmYTc5NTkyYmE1ZWEzNGQiLCJpYXQiOjE2NDUxMjQ5MjMsImV4cCI6MTY0NTk4ODkyM30.5y1N8aiNyt-BNb-Q07d7D5f30I0f5AbKGm0r2x-avhU' \
       --header 'Content-Type: application/json' \
       --data-raw '{
           "title": "Let'\''s Learn",
           "text": "Great"
       }'
+
   ##### Response
+
       HTTP/1.1 200 OK
       X-Powered-By: Express
       Access-Control-Allow-Origin: *
@@ -360,14 +420,17 @@
       Keep-Alive: timeout=5
 
       {"_id":"620e975b3fa79592ba5ea357","title":"Let's Learn","text":"Great","author":null,"categories":["620e975b3fa79592ba5ea351"],"__v":1}
-      
-* #### Delete One post by _id
+
+- #### Delete One post by \_id
+
   ##### Request
-  'DELETE /api/posts/<id>?access_token=<token you get from signin>` (get _id from one of post in Read All Posts data)
-    
+
+  'DELETE /api/posts/<id>?access_token=<token you get from signin>` (get \_id from one of post in Read All Posts data)
+
       curl --location --request DELETE 'localhost:3000/api/posts/620e975b3fa79592ba5ea357?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI2MjBlOTc1YjNmYTc5NTkyYmE1ZWEzNGQiLCJpYXQiOjE2NDUxMjQ5MjMsImV4cCI6MTY0NTk4ODkyM30.5y1N8aiNyt-BNb-Q07d7D5f30I0f5AbKGm0r2x-avhU'
+
   ##### Response
-      
+
       HTTP/1.1 200 OK
       X-Powered-By: Express
       Access-Control-Allow-Origin: *
